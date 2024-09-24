@@ -1,8 +1,10 @@
 import {createElement} from '../framework/render.js';
 
-function createTaskboardComponentTemplate() {
-  return (
-    `<div class="container2">
+
+function createTaskBoardComponentTemplate() {
+    return (
+        
+        `<div class="container2">
       <div class="columns">
         <div class="column backlog">
           <h2>Бэклог</h2>
@@ -19,20 +21,25 @@ function createTaskboardComponentTemplate() {
         <button class="clear-button">x Очистить</button>
       </div>
     </div>`
-  );
+      );
 }
 
-export default class TaskboardComponent {
+
+export default class TaskBoardComponent {
   getTemplate() {
-    return createTaskboardComponentTemplate();
+    return createTaskBoardComponentTemplate();
   }
+
 
   getElement() {
     if (!this.element) {
       this.element = createElement(this.getTemplate());
     }
+
+    
     return this.element;
   }
+
 
   removeElement() {
     this.element = null;
