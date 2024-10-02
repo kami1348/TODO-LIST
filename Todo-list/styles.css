@@ -1,0 +1,182 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e0e7ff; 
+    
+}
+
+
+.header {
+    text-align: left;
+    background-color: #3b82f6;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    padding-left:40px;
+}
+
+
+.container1 {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    padding-top: 120px; 
+}
+
+.container2 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5px; 
+}
+
+.new-task {
+    background-color: #fff; 
+    padding: 30px;
+    border-radius: 20px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    width: 350px;  
+    margin-top: 100px;
+    margin-left: 20px;
+}
+
+.new-task h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px; 
+}
+
+.new-task-content {
+    display: flex;
+    align-items: center; 
+}
+
+.new-task input {
+    flex: 1; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+}
+
+.new-task button {
+    padding: 10px 20px;
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.new-task button:hover {
+    background-color: #2563eb;
+}
+
+
+.columns {
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    
+}
+
+.column {
+    width: 19%;
+    display: flex;
+    flex-direction: column;
+}
+
+.column h2 {
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    flex: 0 1 auto;
+    width: 70%;
+}
+
+.backlog h2 {
+    background-color: #dad1d1;
+    color: #07020252;
+}
+
+.in-progress h2 {
+    background-color: #599cef96;
+    color: #2564ebef;
+}
+
+.done h2 {
+    background-color: #34d3998a;
+    color: #05885aa6;
+}
+
+.trash h2 {
+    background-color: #eb03035c;
+    color: #f01e1ebf;
+}
+
+
+.task {
+    background-color: #fff; 
+    border-radius: 5px; 
+    padding: 10px;
+    margin: 10px 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    width: 90%;  
+    display: flex;
+    position: relative;
+}
+
+.backlog .task::before {
+    background-color: #ccc; 
+}
+
+.in-progress .task::before {
+    background-color: #60a5fa; 
+}
+
+.done .task::before {
+    background-color: #34d399; 
+}
+
+.trash .task::before {
+    background-color: #f87171; 
+}
+
+.task::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 5px; 
+    border-radius: 8px 0 0 8px; 
+}
+
+.task-title {
+    margin-left: 15px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #333; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clear-trash-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .clear-trash-button:hover {
+    background-color: #dc2626;
+  }
+  
