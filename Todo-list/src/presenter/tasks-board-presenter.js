@@ -42,11 +42,24 @@ export default class TasksBoardPresenter {
   }
 
   #renderTasksColumn(status, container) {
-    const taskColumnComponent = new TaskColumnComponent({ status });
+    const taskColumnComponent = new TaskColumnComponent({
+      status,
+      onTaskDrop: this.#handleTaskDrop.bind(this),
+    });
 
     render(taskColumnComponent, container);
 
     return taskColumnComponent.element;
+  }
+
+  #handleTaskDrop(taskId, newStatus, position) {
+    this.#tasksModel.updateTaskStatus(taskId, newStatus);
+
+    if (position) {
+      this.#tasksModel.moveTask(taskId, position);
+    } else {
+      this.#tasksModel.addTaskToEnd(taskId);
+    }
   }
 
   #makeClearButton() {
