@@ -84,11 +84,7 @@ body {
   }
   
   .task-column {
-    background-color: white;
     width: 95%;
-    padding: 1em;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   }
   
   .task-column h3 {
@@ -98,24 +94,28 @@ body {
     margin-bottom: 20px;
     font-size: 1.2em;
     color: white;
-    border-radius: 4px;
+    border-radius: 8px;
   }
-  
   .backlog h3 {
-    background-color: #576e7c;
-  }
+    color: #494949;
+    background-color: #ccc;
+}
+
+.inProgress h3 {
+    color: #1f5699;
+    background-color: #77b1f8;
+}
+
+.done h3 {
+    color: #0c972f;
+    background-color: #51e4ae;
+}
+
+.trash h3 {
+    color: #993232;
+    background-color: #f18383;
+}
   
-  .inProgress h3 {
-    background-color: #f39c12;
-  }
-  
-  .done h3 {
-    background-color: #2ecc71;
-  }
-  
-  .trash h3 {
-    background-color: #e74c3c;
-  }
   
   @media (min-width: 768px) {
     .task-board {
@@ -156,10 +156,10 @@ body {
   }
   
   .task-element {
-    background-color: #f4f4f9;
+    background-color: white;
     padding: 10px;
     margin-bottom: 10px;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   }
   

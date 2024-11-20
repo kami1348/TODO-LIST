@@ -1,6 +1,7 @@
 import TaskColumnComponent from "../view/task-column-component.js";
 import TaskPresenter from "./task-presenter.js";
 import ClearButtonComponent from "../view/clear-trash-button-component.js";
+import LoadingComponent from "../view/loading-component.js";
 import { render } from "../framework/render.js";
 import { Status } from "../const.js";
 
@@ -23,8 +24,11 @@ export default class TasksBoardPresenter {
     this.#taskBoardContainer.innerHTML = "";
   }
 
-  init() {
-    const tasks = [...this.#tasksModel.tasks];
+  async init() {
+    const loadingComponent = new LoadingComponent();
+    render(loadingComponent, this.#taskBoardContainer);
+    await this.#tasksModel.init();
+    loadingComponent.element.remove();
 
     Object.values(Status).forEach((status) => {
       var taskColumnElement = this.#renderTasksColumn(
@@ -52,13 +56,14 @@ export default class TasksBoardPresenter {
     return taskColumnComponent.element;
   }
 
-  #handleTaskDrop(taskId, newStatus, position) {
-    this.#tasksModel.updateTaskStatus(taskId, newStatus);
-
-    if (position) {
-      this.#tasksModel.moveTask(taskId, position);
-    } else {
-      this.#tasksModel.addTaskToEnd(taskId);
+  async #handleTaskDrop(taskId, newStatus, position) {
+    try {
+      await this.#tasksModel.updateTaskStatus(taskId, newStatus);
+      // if (position) {
+      //   this.#tasksModel.moveTask(taskId, position);
+      // }
+    } catch (err) {
+      console.error("Ошибка при обновлении статуса задачи:", err);
     }
   }
 
@@ -75,19 +80,27 @@ export default class TasksBoardPresenter {
     render(clearButtonComponent, trashContainer);
   }
 
-  createTask() {
+  async createTask() {
     const taskTitle = document.querySelector("#add-task").value.trim();
 
     if (!taskTitle) {
       return;
     }
-    this.#tasksModel.addTask(taskTitle);
 
-    document.querySelector("#add-task").value = "";
+    try {
+      await this.#tasksModel.addTask(taskTitle);
+      document.querySelector("#add-task").value = "";
+    } catch {
+      console.error("Ошибка при добавлении задачи:", err);
+    }
   }
 
-  cleanTrash() {
+  async cleanTrash() {
     const tasksInStatusTrash = this.#tasksModel.getTasksByStatus(Status.TRASH);
-    this.#tasksModel.deleteTasks(tasksInStatusTrash);
+    try {
+      await this.#tasksModel.deleteTasks(tasksInStatusTrash);
+    } catch {
+      console.error("Ошибка при удалении задач:", err);
+    }
   }
 }
